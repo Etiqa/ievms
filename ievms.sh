@@ -668,6 +668,15 @@ set_bridged_network() {
     execute_task_and_shutdown "${1}" "regedit /S C:\\Users\\${guest_user}\\Desktop\\netloc.reg"
 }
 
+selenium_script() {
+    local vm=${1}
+    shift
+    local task="${ievms_home}/selenium.bat"
+    printf '%s\r\n' "﻿java -jar selenium-server-standalone-3.0.1.jar -role node -hub http://10.0.1.253:4444/grid/register/ -browser browserName=firefox,maxInstances=2 -browser browserName=chrome,maxInstances=2 -browser browserName=iexplore,maxInstances=2" >>$task
+
+    copy_to_vm2 "${vm}" "/Users/${guest_user}/selenium.bat" "${task}"
+}
+
 install_selenium() {
     local selenium_server="selenium-server-standalone-3.0.1.jar"
     download "Selenium standalone server JAR" \
@@ -697,6 +706,9 @@ install_selenium() {
     copy_to_vm2 "${1}" "/Users/${guest_user}/chromedriver.exe" "${ievms_home}/chromedriver.exe"
     copy_to_vm2 "${1}" "/Users/${guest_user}/IEDriverServer32.exe" "${ievms_home}/IEDriverServer32.exe"
     copy_to_vm2 "${1}" "/Users/${guest_user}/IEDriverServer64.exe" "${ievms_home}/IEDriverServer64.exe"
+    selenium_script "${1}"
+
+
 
     if [ "${os}" == "Win10" ] ; then
         local edgedriver="MicrosoftWebDriver.msi"
@@ -714,6 +726,7 @@ install_selenium() {
     local selenium_dir="C:\\Users\\${guest_user}"
     execute_task_and_shutdown "${1}" "IF NOT DEFINED PROGRAMFILES(x86) (rename ${selenium_dir}\\IEDriverServer32.exe IEDriverServer.exe) ELSE (rename ${selenium_dir}\\IEDriverServer64.exe IEDriverServer.exe)"
 }
+
 
 download_latest_firefox() {
     log "Downloading latest firefox installer"
