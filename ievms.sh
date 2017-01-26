@@ -685,17 +685,17 @@ install_selenium() {
     local chromedriver="chromedriver_win32.zip"
     download "Selenium Chrome Driver" \
         "http://chromedriver.storage.googleapis.com/2.27/${chromedriver}" "${chromedriver}" "2125188a206e2258364c3e46f07724e5"
-    unzip -u "${chromedriver}"
+    unzip -o "${chromedriver}"
 
     local iedriver32="IEDriverServer_Win32_3.0.0.zip"
     download "Selenium IE Driver 32bit" \
         "http://selenium-release.storage.googleapis.com/3.0/${iedriver32}" "${iedriver32}" "4ba666e144f07869a0aa5f7a4c7a2091"
-    unzip -u "${iedriver32}" && mv "IEDriverServer.exe" "IEDriverServer32.exe"
+    unzip -o "${iedriver32}" && mv "IEDriverServer.exe" "IEDriverServer32.exe"
 
     local iedriver64="IEDriverServer_x64_3.0.0.zip"
     download "Selenium IE Driver 64bit" \
         "http://selenium-release.storage.googleapis.com/3.0/${iedriver64}" "${iedriver64}" "4396e6ca7fe643ef49ee137a81723a42"
-    unzip -u "${iedriver64}" && mv "IEDriverServer.exe" "IEDriverServer64.exe"
+    unzip -o "${iedriver64}" && mv "IEDriverServer.exe" "IEDriverServer64.exe"
 
     log "Switching to bridged networking mode"
     set_bridged_network "${1}"
