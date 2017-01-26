@@ -672,7 +672,7 @@ selenium_script() {
     local vm=${1}
     shift
     local task="${ievms_home}/selenium.bat"
-    printf '%s\r\n' "﻿java -jar selenium-server-standalone-3.0.1.jar -role node -hub http://10.0.1.253:4444/grid/register/ -browser browserName=firefox,maxInstances=2 -browser browserName=chrome,maxInstances=2 -browser browserName=iexplore,maxInstances=2" >>$task
+    printf '%s\r\n' "﻿java -jar selenium-server-standalone-3.0.1.jar -role node -hub http://10.0.1.253:4444/grid/register/ -browser browserName=firefox,maxInstances=2 -browser browserName=chrome,maxInstances=2 -browser browserName=iexplore,maxInstances=2" >$task
 
     copy_to_vm2 "${vm}" "/Users/${guest_user}/selenium.bat" "${task}"
 }
