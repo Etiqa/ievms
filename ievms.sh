@@ -661,23 +661,23 @@ set_bridged_network() {
 }
 
 install_selenium() {
-    local selenium_server="selenium-server-standalone-2.53.1.jar"
+    local selenium_server="selenium-server-standalone-3.0.1.jar"
     download "Selenium standalone server JAR" \
-        "http://selenium-release.storage.googleapis.com/2.53/${selenium_server}" "${selenium_server}" "63a0b96eab18f8420b9bba2f0f5d380c"
+        "http://selenium-release.storage.googleapis.com/3.0/${selenium_server}" "${selenium_server}" "31a9b1af54c6b00cc6028370e3e00a91"
 
     local chromedriver="chromedriver_win32.zip"
     download "Selenium Chrome Driver" \
-        "http://chromedriver.storage.googleapis.com/2.22/${chromedriver}" "${chromedriver}" "c5962f884bd58987b1ef0fa04c6a3ce5"
+        "http://chromedriver.storage.googleapis.com/2.27/${chromedriver}" "${chromedriver}" "2125188a206e2258364c3e46f07724e5"
     unzip -u "${chromedriver}"
 
-    local iedriver32="IEDriverServer_Win32_2.53.1.zip"
+    local iedriver32="IEDriverServer_Win32_3.0.0.zip"
     download "Selenium IE Driver 32bit" \
-        "http://selenium-release.storage.googleapis.com/2.53/${iedriver32}" "${iedriver32}" "35ac005f9088f2995d6a1cdc384fe4cb"
+        "http://selenium-release.storage.googleapis.com/3.0/${iedriver32}" "${iedriver32}" "4ba666e144f07869a0aa5f7a4c7a2091"
     unzip -u "${iedriver32}" && mv "IEDriverServer.exe" "IEDriverServer32.exe"
 
-    local iedriver64="IEDriverServer_x64_2.53.1.zip"
+    local iedriver64="IEDriverServer_x64_3.0.0.zip"
     download "Selenium IE Driver 64bit" \
-        "http://selenium-release.storage.googleapis.com/2.53/${iedriver64}" "${iedriver64}" "6c822788a04e4e8d4727dc4c08c0102a"
+        "http://selenium-release.storage.googleapis.com/3.0/${iedriver64}" "${iedriver64}" "4396e6ca7fe643ef49ee137a81723a42"
     unzip -u "${iedriver64}" && mv "IEDriverServer.exe" "IEDriverServer64.exe"
 
     log "Switching to bridged networking mode"
